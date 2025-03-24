@@ -11,14 +11,22 @@ class StudentController extends Controller
     
     public function index() {
         $colleges = College::orderBy('name')->pluck('name', 'id')->prepend('All Colleges', '');
-        return view('students.index', compact('students', 'colleges'));
 
-    }
+        $query = Student::query();
+
+        if (request()->filled('college_id')) {
+            $query->where('college_id', request('college_id'));
+        }
+
+        $students = $query->orderBy('name')->get();
+
+        return view('students.index', compact('students', 'colleges'));
+        }
 
     
     public function create() {
         $student = new Student();
-        $colleges = College::orderBy('name')->pluck('name', 'id')->prepend('Select a College', '');
+        $colleges = College::orderBy('name')->pluck('name', 'id')->prepend('List of Colleges', '');
     
         return view('students.create', compact('student', 'colleges'));
     }
