@@ -20,6 +20,9 @@ Route::get('/colleges', [CollegeController::class, 'index'])->name('colleges.ind
 Route::get('/colleges/create', [CollegeController::class, 'create'])->name('colleges.create');
 Route::get('/colleges/{id}/edit', [CollegeController::class, 'edit'])->name('colleges.edit');
 
+Route::resource('colleges', CollegeController::class);
+
+
 // Students
 Route::get('/students', [StudentController::class, 'index'])->name('students.index');
 Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
