@@ -10,7 +10,6 @@
         </a>
     </div>
 
-    <!-- Filter by College -->
     <form method="GET" action="{{ route('students.index') }}" class="mb-4">
         <div class="row g-2 align-items-center">
             <div class="col-auto">
@@ -25,9 +24,12 @@
         </div>
     </form>
 
+    @include('students._sort')
+
     @if($students->isEmpty())
         <div class="alert alert-info">No students found.</div>
     @else
+
         <table class="table table-bordered table-striped">
             <thead class="table-light">
                 <tr>

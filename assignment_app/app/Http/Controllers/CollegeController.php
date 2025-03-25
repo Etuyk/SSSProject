@@ -54,15 +54,14 @@ class CollegeController extends Controller
     //Update the college details from the edit form
     public function update(Request $request, string $id) {
         $request->validate([
-            'name' => 'required',
-            'address' => 'required',
+            'name' => 'required|string|unique:colleges,name,' . $id,
+            'address' => 'required|string',
         ]);
     
         $college = College::find($id);
-    
         $college->update($request->all());
     
-        return redirect()->route('colleges.index')->with('message', 'College updated successfully.');
+        return redirect()->route('colleges.index')->with('message', 'College updated successfully!');
      }
 
 

@@ -18,6 +18,12 @@ class StudentController extends Controller
             $query->where('college_id', request('college_id'));
         }
 
+        if (request('sort') === 'desc') {
+            $query->orderBy('name', 'desc');
+        } else {
+            $query->orderBy('name', 'asc');
+        }
+
         $students = $query->orderBy('name')->get();
 
         return view('students.index', compact('students', 'colleges'));
@@ -38,8 +44,7 @@ class StudentController extends Controller
             'email' => 'required|email',
             'phone' => 'required|digits_between:8,12',
             'dob' => 'required|date',
-            // FOR TESTING ONLY – not recommended for final project
-            'college_id' => 'nullable',
+            'college_id' => 'required|exists:colleges,id'
         ]);
     
         Student::create($request->all());
@@ -70,17 +75,16 @@ class StudentController extends Controller
     public function update(Request $request, string $id) {
         $request->validate([
             'name' => 'required|string',
-            'email' => 'required|email',
-            'phone' => 'required|regex:/^(\+?\d{1,3}[- ]?)?\d{10}$/',
+            'email' => 'required|email|unique:students,email,' . $id,
+            'phone' => 'required|digits_between:8,12',
             'dob' => 'required|date',
-            'college_id' => 'required|exists:colleges,id'
+            'college_id' => 'required|exists:colleges,id',
         ]);
-
+    
         $student = Student::find($id);
-
         $student->update($request->all());
-
-        return redirect()->route('students.index')->with('message', 'Student updated successfully.');
+    
+        return redirect()->route('students.index')->with('message', 'Student updated successfully!');
     }
 
     
