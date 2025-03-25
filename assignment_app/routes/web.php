@@ -16,18 +16,20 @@ use App\Http\Controllers\StudentController;
 */
 
 // Colleges
-Route::get('/colleges', [CollegeController::class, 'index'])->name('colleges.index');
-Route::get('/colleges/create', [CollegeController::class, 'create'])->name('colleges.create');
-Route::get('/colleges/{id}/edit', [CollegeController::class, 'edit'])->name('colleges.edit');
+// Route::get('/colleges', [CollegeController::class, 'index'])->name('colleges.index');
+// Route::get('/colleges/create', [CollegeController::class, 'create'])->name('colleges.create');
+// Route::get('/colleges/{id}/edit', [CollegeController::class, 'edit'])->name('colleges.edit');
 
 Route::resource('colleges', CollegeController::class);
 
 
 // Students
-Route::get('/students', [StudentController::class, 'index'])->name('students.index');
-Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
-Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('students.edit');
-Route::delete('/students/{id}', [StudentController::class, 'destroy'])->name('students.destroy');
+// Route::get('/students', [StudentController::class, 'index'])->name('students.index');
+// Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
+// Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('students.edit');
+// Route::delete('/students/{id}', [StudentController::class, 'destroy'])->name('students.destroy');
+
+Route::resource('students', StudentController::class);
 
 
 Route::get('/', function () {

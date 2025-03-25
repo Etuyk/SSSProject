@@ -36,9 +36,10 @@ class StudentController extends Controller
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email',
-            'phone' => 'required|regex:/^(\+?\d{1,3}[- ]?)?\d{10}$/',
+            'phone' => 'required|digits_between:8,12',
             'dob' => 'required|date',
-            'college_id' => 'required|exists:colleges,id'
+            // FOR TESTING ONLY – not recommended for final project
+            'college_id' => 'nullable',
         ]);
     
         Student::create($request->all());

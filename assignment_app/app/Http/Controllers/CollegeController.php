@@ -44,7 +44,7 @@ class CollegeController extends Controller
 
     //Display edit form
     public function edit(string $id) {
-        $college = College::findOrFail($id);
+        $college = College::find($id);
 
         return view('colleges.edit', compact('college'));
 
@@ -68,7 +68,7 @@ class CollegeController extends Controller
 
     //Destroy the college with the id
     public function destroy(string $id) {
-        $college = College::findO($id);
+        $college = College::find($id);
 
         $college->delete();
 
