@@ -16,6 +16,26 @@
   </head>
   <body>
 
+    <div class="container mt-3">
+
+      {{-- Success Message --}}
+      @if(session('message'))
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ session('message') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      @endif
+  
+      {{-- Error Message --}}
+      @if(session('error'))
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{ session('error') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      @endif
+  
+  </div>
+
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
